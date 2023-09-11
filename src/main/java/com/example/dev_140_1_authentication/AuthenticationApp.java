@@ -16,6 +16,7 @@ import java.sql.SQLException;
 
 
 public class AuthenticationApp extends Application {
+    private Stage stage;
     private Repository repository = new Repository();
     private TextField userNameField = new TextField();
     private PasswordField passwordField = new PasswordField();
@@ -32,8 +33,19 @@ public class AuthenticationApp extends Application {
 
     @Override
     public void start(Stage stage) {
-
+        this.stage = stage;
         stage.setResizable(false);
+        stage.setTitle("JavaFX Welcome");
+        stage.setScene(getRootScene());
+        stage.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+    }
+
+    private Scene getRootScene(){
         AnchorPane root = new AnchorPane();
         GridPane gridPane = new GridPane();
 
@@ -108,14 +120,7 @@ public class AuthenticationApp extends Application {
 
 
         Scene scene = new Scene(root, 320, 240);
-        stage.setTitle("JavaFX Welcome");
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @Override
-    public void stop() throws Exception {
-        super.stop();
+        return scene;
     }
 
     private void authentication() {
